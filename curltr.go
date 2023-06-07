@@ -90,17 +90,8 @@ func main() {
 			tracerouteResults[i].Success = success
 			tracerouteResults[i].Loss = loss
 		}
-	}
 
-	fmt.Println("Probe results:")
-	for _, result := range tracerouteResults {
-		if result.Address == "" {
-			fmt.Printf("Probe %d: No response\n", result.Sequence)
-		} else if result.Success {
-			fmt.Printf("Probe %d: Address: %s, Loss: %f%%\n", result.Sequence, result.Address, result.Loss*100)
-		} else {
-			fmt.Printf("Probe %d: Address: %s, Connection failed\n", result.Sequence, result.Address)
-		}
+		fmt.Printf("[%s] Probe %d: Address: %s, Success: %t, Loss: %.2f%%\n", time.Now().Format("2006-01-02 15:04:05"), tracerouteResults[i].Sequence, tracerouteResults[i].Address, tracerouteResults[i].Success, tracerouteResults[i].Loss*100)
 	}
 }
 
